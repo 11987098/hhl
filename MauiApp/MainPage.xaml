@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiScreenShare"
+             x:Class="MauiScreenShare.MainPage"
+             BackgroundColor="#0F0F1A"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid>
+        <!-- 自定义 WebView，加载部署好的网页地址 -->
+        <local:MediaWebView x:Name="webView"
+                            Source="https://your-deployed-app.com"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Fill" />
+    </Grid>
+
+</ContentPage>
