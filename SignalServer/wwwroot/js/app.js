@@ -557,3 +557,8 @@ remoteVideo.addEventListener('click', () => {
 roomInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') joinBtn.click();
 });
+window.addEventListener('beforeunload', () => {
+    if (signalrConn) {
+        try { signalrConn.stop(); } catch(e) {}
+    }
+});
