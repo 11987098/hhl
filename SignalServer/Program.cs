@@ -10,11 +10,11 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
     options.KnownProxies.Clear();
 });
 
-// SignalR 配置
+// SignalR 配置（优化扣费核心：缩短超时，快速清理僵尸连接）
 builder.Services.AddSignalR(options =>
 {
-    options.KeepAliveInterval = TimeSpan.FromSeconds(15);
-    options.ClientTimeoutInterval = TimeSpan.FromSeconds(30);
+    options.KeepAliveInterval = TimeSpan.FromSeconds(15);       // 保活心跳从15秒改10秒，更快探测死连接
+    options.ClientTimeoutInterval = TimeSpan.FromSeconds(25);  // 客户端超时从30秒改20秒，无心跳直接强制断开WS
     options.MaximumReceiveMessageSize = 64 * 1024;
     options.EnableDetailedErrors = true;
 });
@@ -46,3 +46,4 @@ app.MapHub<SignalHub>("/signalhub");
 app.MapFallbackToFile("index.html");
 
 app.Run();
+
